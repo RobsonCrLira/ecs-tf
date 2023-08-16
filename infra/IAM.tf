@@ -1,7 +1,7 @@
 resource "aws_iam_role" "ecs_role" {
   name = "${var.nameIAM}-ecs-role"
 
-  assume_role_policy = jsondecode({
+  assume_role_policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
       {
@@ -19,12 +19,12 @@ resource "aws_iam_role" "ecs_role" {
 resource "aws_iam_role_policy" "ecs_role_policy" {
   name = "${var.nameIAM}-ecs-role-policy"
   role = aws_iam_role.ecs_role.name
-  policy = jsondecode({
+  policy = jsonencode({
     "Version" : "2012-10-17",
     "Statement" : [
       {
         "Action" = [
-          "ecr:GetAuthoziationToken",
+          "ecr:GetAuthorizationToken",
           "ecr:BatchCheckLayerAvailability",
           "ecr:GetDownloadUrlForLayer",
           "ecr:BatchGetImage",

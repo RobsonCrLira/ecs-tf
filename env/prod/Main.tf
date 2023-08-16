@@ -6,5 +6,5 @@ module "production" {
 }
 
 output "dns_name_alb" {
-  value = module.production.dns_name_alb
+  value = "http://${module.production.alb_dns_name}"
 }
